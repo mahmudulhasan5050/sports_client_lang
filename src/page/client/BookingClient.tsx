@@ -103,7 +103,7 @@ const BookingClient = () => {
         }
         getFacilityName()
         getAvailableTime()
-    }, [date, facilityName, facilityUnitName])
+    }, [date, facilityName])
 
     const handleDateChange = (selectedDate: Date | null) => {
         if (selectedDate) {
