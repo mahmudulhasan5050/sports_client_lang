@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 import classNames from 'classnames'
 
@@ -6,23 +6,24 @@ import { firstLetterUpperCase } from '../../../utils/upperLowerConvert'
 import { Booking } from '../../../types/Booking'
 import { axiosFetchBookingForRefund, updateBookingAfterRefund_A } from '../../../axios'
 import moment from 'moment-timezone'
+import { useTranslation } from 'react-i18next'
 
-type SetRefreshType = {
-    refresh: boolean
-    setRefresh: (value: boolean) => void
-}
+// type SetRefreshType = {
+//     refresh: boolean
+//     setRefresh: (value: boolean) => void
+// }
 
 const refundButtonClasses = 'text-white font-bold py-1 px-2 rounded focus:outline-none focus:shadow-outline'
 
-const RefundDisplay = ({ refresh, setRefresh }: SetRefreshType) => {
+const RefundDisplay = () => {
     const [bookings, setBookings] = useState<Booking[]>([])
-
+    const { i18n } = useTranslation()
     // Fetch booking
     useEffect(() => {
         const fetchBooking = async () => {
             try {
                 const response = await axiosFetchBookingForRefund()
-            
+
                 const sortedBookings = response.data.sort((a: Booking, b: Booking) =>
                     moment(b.date).diff(moment(a.date))
                 )
@@ -40,14 +41,12 @@ const RefundDisplay = ({ refresh, setRefresh }: SetRefreshType) => {
     const handleRefund = async (id: string) => {
         try {
             const updatedBookingsRes = await updateBookingAfterRefund_A(id)
-         
-       setBookings((prevBookings) =>
+
+            setBookings((prevBookings) =>
                 prevBookings.map((booking) =>
-                    booking._id === updatedBookingsRes.data._id
-                        ? { ...booking, ...updatedBookingsRes.data }
-                        : booking
+                    booking._id === updatedBookingsRes.data._id ? { ...booking, ...updatedBookingsRes.data } : booking
                 )
-            );
+            )
             toast.success('Booking has been cancelled!')
         } catch (error) {
             toast.error('Booking can not be cancelled.')
@@ -77,7 +76,8 @@ const RefundDisplay = ({ refresh, setRefresh }: SetRefreshType) => {
                                 <tr key={unit._id}>
                                     <td className="hidden lg:table-cell">{firstLetterUpperCase(unit.user.name)}</td>
                                     <td>
-                                        {firstLetterUpperCase(unit.facility.type)}-{unit.facility.courtNumber}
+                                        {firstLetterUpperCase(unit.facility.type[i18n.language as 'en' | 'fi' | 'sv'])}-
+                                        {unit.facility.courtNumber}
                                         <br />
                                         {moment(unit.date).format('DD/MM/YY')}
                                         <br />
