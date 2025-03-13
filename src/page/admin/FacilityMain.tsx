@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 
 import FacilityDisplay from '../../components/admin/facility/FacilityDisplay'
 import FacilityForm from '../../components/admin/facility/FacilityForm'

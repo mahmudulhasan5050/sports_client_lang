@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 
 import RefundDisplay from '../../components/admin/refund/RefundDisplay'
 

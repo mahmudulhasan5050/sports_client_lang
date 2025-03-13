@@ -1,4 +1,3 @@
-import React from 'react'
 import { Booking } from '../../../types/Booking'
 import { firstLetterUpperCase } from '../../../utils/upperLowerConvert'
 import toast from 'react-hot-toast'

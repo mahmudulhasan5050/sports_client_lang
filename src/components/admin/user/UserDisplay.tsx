@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { User } from '../../../types/User'
 import { axiosFetchUsers } from '../../../axios'
 import { firstLetterUpperCase } from '../../../utils/upperLowerConvert'
@@ -46,14 +46,18 @@ const UserDisplay = ({ refresh, setUserId, setRefresh }: SetRefreshType) => {
                         <tbody>
                             {users.map((unit) => (
                                 <tr key={unit._id}>
-                                    <td className="py-2 px-4 border-b hidden lg:table-cell">{firstLetterUpperCase(unit.name)}</td>
+                                    <td className="py-2 px-4 border-b hidden lg:table-cell">
+                                        {firstLetterUpperCase(unit.name)}
+                                    </td>
                                     <td className="py-2 px-4 border-b">{unit.email}</td>
-                                   <td>
+                                    <td>
                                         <div className="flex gap-2">
                                             <button
                                                 onClick={() => {
-                                                    unit._id && setUserId(unit._id)
-                                                    setRefresh(true)
+                                                    if (unit._id) {
+                                                        setUserId(unit._id)
+                                                        setRefresh(true)
+                                                    }
                                                 }}
                                                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-4 rounded focus:outline-none focus:shadow-outline"
                                             >

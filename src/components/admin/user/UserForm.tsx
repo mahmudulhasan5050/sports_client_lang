@@ -48,6 +48,7 @@ const UserForm = ({ userId, setUserId, setRefresh }: SetRefreshType) => {
             setUserId('')
         } catch (err) {
             toast.error('Failed to update user. Please try again.')
+            console.log(err)
         }
     }
     if (loading) {

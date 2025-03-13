@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { saveToken, tokenDecodeFunc } from '../../utils/cookiesFunc'
 import { useUser } from '../../context/UserContext'

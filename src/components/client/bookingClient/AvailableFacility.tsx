@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { FacilityCreate } from '../../../types/Facility'
+import { Facility } from '../../../types/Facility'
 import { axiosAvailableDuration } from '../../../axios'
 import { AxiosRequestForFetchDataType } from '../../../types/AxiosRequestForFetchData'
 import { firstLetterUpperCase } from '../../../utils/upperLowerConvert'
@@ -8,7 +8,7 @@ import moment from 'moment-timezone'
 import { useTranslation } from 'react-i18next'
 
 type AvailableFacilityProps = {
-    facility: FacilityCreate
+    facility: Facility
     date: Date
     facilityName: string
     time: string
@@ -32,8 +32,8 @@ const AvailableFacility = ({
     setLoadingDuration,
     setError
 }: AvailableFacilityProps) => {
-const {t, i18n} = useTranslation()
-const language = i18n.language as 'en' | 'fi' | 'sv';
+    const { t, i18n } = useTranslation()
+    const language = i18n.language as 'en' | 'fi' | 'sv'
     useEffect(() => {
         setAvailableGameDurations([])
     }, [time])
@@ -54,7 +54,7 @@ const language = i18n.language as 'en' | 'fi' | 'sv';
                 setAvailableGameDurations(res.data.validDurations)
                 setCostPerHour(facility.pricePerHour)
             } catch (error) {
-                setError('Failed to fetch duration') 
+                setError('Failed to fetch duration')
                 console.log(error)
             } finally {
                 setLoadingDuration(false)
@@ -83,7 +83,7 @@ const language = i18n.language as 'en' | 'fi' | 'sv';
                                     : 'from-green-300 to-green-500 text-white'
                             )}
                         >
-                           {t('selectCourtButtonT')}
+                            {t('selectCourtButtonT')}
                         </button>
                     </div>
                 </div>

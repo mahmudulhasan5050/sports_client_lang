@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { FcGoogle } from 'react-icons/fc'
-
 import { SignInType } from '../types/User'
 import { axiosSignIn } from '../axios'
 import { saveToken, tokenDecodeFunc } from '../utils/cookiesFunc'
@@ -18,7 +17,7 @@ const SignIn = () => {
     const [error, setError] = useState<string | null>(null)
     const navigate = useNavigate()
     const { userCTX, setUserCTX } = useUser()
-    const {t} = useTranslation()
+    const { t } = useTranslation()
 
     useEffect(() => {
         if (userCTX?.role === 'admin') {
@@ -35,19 +34,18 @@ const SignIn = () => {
         e.preventDefault()
         try {
             const res = await axiosSignIn(formData)
-     
-                if (res.data) {
-              
-                    const userFromToken = tokenDecodeFunc(res.data)
-                    setUserCTX({
-                        name: userFromToken.name,
-                        role: userFromToken.role
-                    })
-                }
+
+            if (res.data) {
+                const userFromToken = tokenDecodeFunc(res.data)
+                setUserCTX({
+                    name: userFromToken.name,
+                    role: userFromToken.role
+                })
+            }
 
             saveToken(res.data)
             if (userCTX && userCTX.role === 'admin') {
-                navigate('/admin');
+                navigate('/admin')
             }
             const localStorageBooking = localStorage.getItem('booking')
 
@@ -88,7 +86,7 @@ const SignIn = () => {
 
                     <div className="space-y-2">
                         <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                           {t('signinEmail')}
+                            {t('signinEmail')}
                         </label>
                         <input
                             id="email"
@@ -131,7 +129,6 @@ const SignIn = () => {
                     </p>
 
                     <p className="text-center">
-                
                         <a href="/forgot-password" className="text-sm text-blue-500 hover:underline">
                             {t('forgotPasswordT')}
                         </a>

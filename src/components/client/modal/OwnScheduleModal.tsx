@@ -26,7 +26,7 @@ interface PropsType {
 const OwnScheduleModal = ({ isOpen, onClose }: PropsType) => {
     const [bookings, setBookings] = useState<OwnBooking[]>([])
     const { userCTX } = useUser()
-    const {t} = useTranslation()
+    const {t, i18n} = useTranslation()
 
     useEffect(() => {
         const fetchUserBookingData = async () => {
@@ -75,7 +75,7 @@ const OwnScheduleModal = ({ isOpen, onClose }: PropsType) => {
                         {bookings.map((booking, index) => (
                             <li key={index} className="p-2 border rounded shadow-sm ml-0">
                                 <p>
-                                    <strong>{t('court')}:</strong> {booking.facility.type} {booking.facility.courtNumber}
+                                    <strong>{t('court')}:</strong> {booking.facility.type[i18n.language as 'en'|'fi'|'sv']} {booking.facility.courtNumber}
                                 </p>
                                 <p>
                                     <strong>{t('date')}:</strong> {moment(booking.date).format('DD.MM.YYYY')}
