@@ -53,7 +53,7 @@ const Home = () => {
                             facilityUnit.map((unit, index) => (
                                 <button
                                     key={index}
-                                    onClick={() => navigate(`/booking-client/${unit[i18n.language as 'en'|'fi'|'sv']}`)}
+                                    onClick={() => navigate(`/booking-client/${unit.en}`)}
                                     className="bg-gradient-to-tl from-green-500 to-green-700 text-white py-2 px-6 rounded-full shadow-md hover:bg-green-600 focus:outline-none transition duration-300"
                                 >
                                      {firstLetterUpperCase(unit[i18n.language as 'en'|'fi'|'sv'])}
