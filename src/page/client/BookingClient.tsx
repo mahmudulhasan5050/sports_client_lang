@@ -79,16 +79,15 @@ const BookingClient = () => {
     const [error, setError] = useState<string | null>(null) // Error state
 
     useEffect(() => {
-        const facilityNDateObj = {
-            selectedDate: moment(date).format('YYYY-MM-DD'),
-            facilityName: facilityName!
-        } as AxiosRequestForFetchDataType
-        
         const getFacilityName = async () => {
             const unitName = await axiosGetFacilityUnitByName(facilityName!)
             setFacilityUnitName(unitName.data)
         }
         const getAvailableTime = async () => {
+            const facilityNDateObj = {
+                selectedDate: moment(date).format('YYYY-MM-DD'),
+                facilityName: facilityUnitName.en
+            } as AxiosRequestForFetchDataType
             try {
                 setLoading(true)
                 setAvailableTime([])
@@ -104,7 +103,7 @@ const BookingClient = () => {
         }
         getFacilityName()
         getAvailableTime()
-    }, [date, facilityName])
+    }, [date, facilityName, facilityUnitName])
 
     const handleDateChange = (selectedDate: Date | null) => {
         if (selectedDate) {
