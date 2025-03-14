@@ -91,6 +91,7 @@ const BookingClient = () => {
                 const res = await axiosAvailableTime(facilityNDateObj)
                 setAvailableTime(res.data.availableTime)
                 setFacilityUnitName(res.data.facilityDisplayName)
+
                 clearState()
                 setLoading(false)
             } catch (error) {
@@ -168,7 +169,7 @@ const BookingClient = () => {
         setFacilityId('')
         setDuration(0)
     }
-
+console.log("facilityUnitName ", facilityUnitName)
     return (
         <div className="flex flex-col items-center px-4 mt-20">
             <div className="w-full md:w-1/2 text-center mb-10 flex items-center justify-center">
