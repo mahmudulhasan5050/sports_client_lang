@@ -8,7 +8,7 @@ import { SlCalender } from 'react-icons/sl'
 import 'react-datepicker/dist/react-datepicker.css'
 
 import { todayToString, count15DaysFromToday } from '../../utils/dates'
-import { axiosAvailableTime, axiosGetFacilityUnitByName } from '../../axios'
+import { axiosAvailableTime } from '../../axios'
 import { Facility } from '../../types/Facility'
 import { AxiosRequestForFetchDataType } from '../../types/AxiosRequestForFetchData'
 import { useUser } from '../../context/UserContext'
@@ -83,12 +83,6 @@ const BookingClient = () => {
             selectedDate: moment(date).format('YYYY-MM-DD'),
             facilityName: facilityName!
         } as AxiosRequestForFetchDataType
-
-        const getFacilityName = async () => {
-            const unitName = await axiosGetFacilityUnitByName(facilityName!)
-
-            setFacilityUnitName(unitName.data)
-        }
         const getAvailableTime = async () => {
             try {
                 setLoading(true)
@@ -96,6 +90,7 @@ const BookingClient = () => {
 
                 const res = await axiosAvailableTime(facilityNDateObj)
                 setAvailableTime(res.data.availableTime)
+                setFacilityUnitName(res.data.facilityDisplayName)
                 clearState()
                 setLoading(false)
             } catch (error) {
@@ -103,7 +98,7 @@ const BookingClient = () => {
                 console.log(error)
             }
         }
-        getFacilityName()
+
         getAvailableTime()
     }, [date, facilityName])
 
