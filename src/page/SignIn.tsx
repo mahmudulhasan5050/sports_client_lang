@@ -63,6 +63,7 @@ const SignIn = () => {
     }
 
     const handleGoogleSignin = () => {
+        
         window.location.href = `${viteAPI}/auth/google`
     }
 
