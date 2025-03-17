@@ -1,7 +1,7 @@
 # SportSlot Client
 
 ## Overview
-The **SportSlot Client** is a React-based frontend application designed to provide an intuitive interface for booking sports courts. It allows users to browse available slots, manage their bookings, and complete payments seamlessly.
+The **SportSlot Client** is a React-based frontend application designed to provide an intuitive interface for booking sports courts. It allows users to browse available slots, manage their bookings, and complete payments seamlessly with multiple languages.
 
 ## Features
 - **User Authentication**: Sign in via Google or email-password authentication.
@@ -10,6 +10,7 @@ The **SportSlot Client** is a React-based frontend application designed to provi
 
 - **Admin Dashboard**: Manage bookings, process refunds, and monitor court availability and calendar view.
 - **Responsive UI**: Fully optimized for mobile and desktop.
+- **Language**: Users can book time in Finnish and English languages.
 
 
 ## Tech Stack
@@ -17,6 +18,7 @@ The **SportSlot Client** is a React-based frontend application designed to provi
 - **UI Library**: Tailwind CSS
 - **Routing**: React Router Dom
 - **API Communication**: Axios
+- **Localization Tool**: React-i18next
 - **Payment Processing**: Stripe
 - **Deployment**: Vercel
 

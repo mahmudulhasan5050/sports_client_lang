@@ -39,9 +39,6 @@ export const axiosFetchDashboardInfo = async () => await customAxios.get('/booki
 
 //FacilityUnit
 export const axiosFetchFacilityUnits = async () => await API.get(`/facilityunit`)
-export const axiosGetFacilityUnitByName = async (facilityUnitName: string) =>
-    await API.get(`/facilityunit/${facilityUnitName}`)
-
 
 //facility CRUD
 export const axiosFetchFacility = async () => await customAxios.get(`/facility`)
@@ -68,13 +65,13 @@ export const axiosFetchBookingsLimit30 = async (page: number) => await customAxi
 //     await API.get(`/booking/${bookingId}`) // This is for Edit booking
 export const axiosAdminCreateBooking = async (bookingObjAdmin: BookingCreateType) =>
     await customAxios.post(`/booking`, bookingObjAdmin)
-//export const axiosDeleteBooking = async (id: string) => await API.get(`/booking/${id}`)
 export const axiosGetBookingByDate = async (date: string) => await customAxios.get(`/booking/booking-by-date/${date}`)
 export const axiosFetchBookingForRefund = async () => await customAxios.get('/booking/refund')
 export const updateBookingAfterRefund_A = async (bookingId: string) =>
     await customAxios.post(`/booking/refund/${bookingId}`)
 export const axiosUpdateBookingStatus = async (bookingId: string, bookingObj: Booking) =>
     await customAxios.post(`/booking/update/${bookingId}`, bookingObj)
+
 // users
 export const axiosFetchUsers = async () => await customAxios.get('/user')
 export const axiosDeleteUser = async (userId: string) => await customAxios.delete(`/user/${userId}`)
